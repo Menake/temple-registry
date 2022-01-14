@@ -1,10 +1,6 @@
-/**
- *
- * This is an example router, you can delete this file and then update `../pages/api/trpc/[trpc].tsx`
- */
-
 import { createRouter } from '@/server/createRouter';
 import { z } from 'zod';
+import { prisma } from '@/server/utils/prisma'
 
 export const registerRouter = createRouter()
     // create
@@ -16,6 +12,10 @@ export const registerRouter = createRouter()
             phone: z.string().optional()
         }),
         async resolve({ input }) {
-            console.log(input)
+            await prisma.registrant.create({
+                data: {
+                    ...input
+                }
+            });
         },
     })
