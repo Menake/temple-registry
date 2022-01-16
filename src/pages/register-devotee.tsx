@@ -3,9 +3,18 @@ import Head from "next/head"
 import { Footer } from "../components/Footer"
 import { Form, Registrant } from "../components/Form"
 import Image from "next/image"
+import toast from "react-hot-toast";
+import { useEffect } from "react"
 
-export default function Home() {
+export default function RegisterDevotee() {
   const mutation = trpc.useMutation(['register.add'])
+
+  useEffect(() => {
+    if (mutation.error)
+      toast.error(mutation.error.message, { position: 'bottom-right' })
+  }, [mutation])
+
+  const formSubmit = (registrant: Registrant) => mutation.mutateAsync(registrant)
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
@@ -38,7 +47,7 @@ export default function Home() {
                       </div>
                     </div>
                   )
-                  : <Form onSubmit={(registrant: Registrant) => mutation.mutate(registrant)} />
+                  : <Form onSubmit={formSubmit} />
               }
             </div>
           </div>
