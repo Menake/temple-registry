@@ -37,3 +37,8 @@ export const registerRouter = createRouter()
             }
         },
     })
+    .query('all', {
+        resolve() {
+            return prisma.registrant.findMany();
+        }
+    })
