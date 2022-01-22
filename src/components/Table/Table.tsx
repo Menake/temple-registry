@@ -1,4 +1,5 @@
-import { Column, useTable, useGlobalFilter, useSortBy, usePagination } from 'react-table'  // new
+import { useEffect } from 'react'
+import { Column, useTable, useGlobalFilter, useSortBy, usePagination, TableState } from 'react-table'  // new
 import { SortDownIcon, SortIcon, SortUpIcon } from '../Icons'
 import { Pagination } from './Pagination'
 import { Search } from './Search'
@@ -7,6 +8,7 @@ interface Props {
     className: string;
     data: any[];
     columns: Column<any>[];
+    hiddenColumns?: string[];
 }
 
 export const Table = (props: Props) => {
@@ -17,6 +19,7 @@ export const Table = (props: Props) => {
         prepareRow,
         state,
         setGlobalFilter,
+        setHiddenColumns,
         page,
         canPreviousPage,
         canNextPage,
@@ -27,6 +30,11 @@ export const Table = (props: Props) => {
         previousPage,
         setPageSize,
     } = useTable({ columns: props.columns, data: props.data }, useGlobalFilter, useSortBy, usePagination)
+
+    useEffect(() => {
+        if (props.hiddenColumns)
+            setHiddenColumns(props.hiddenColumns)
+    }, [props.hiddenColumns])
 
     const pageSelectProps = {
         page,
@@ -44,7 +52,6 @@ export const Table = (props: Props) => {
     return (
         <>
             <Search globalFilter={state.globalFilter} setGlobalFilter={setGlobalFilter} />
-
             <table className={`min-w-full divide-y divide-gray-200 ${props.className}`} {...getTableProps()}>
                 <thead className="bg-gray-200">
                     {headerGroups.map(headerGroup => (
@@ -52,7 +59,7 @@ export const Table = (props: Props) => {
                             {headerGroup.headers.map(column => (
                                 <th
                                     scope="col"
-                                    className="group px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                    className={`group px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider`}
                                     {...column.getHeaderProps(column.getSortByToggleProps())}
                                 >
                                     <div className="flex items-center justify-between">
@@ -82,7 +89,7 @@ export const Table = (props: Props) => {
                             <tr {...row.getRowProps()}>
                                 {row.cells.map(cell => {
                                     return <td {...cell.getCellProps()}
-                                        className="px-6 py-4 whitespace-nowrap">
+                                        className="px-6 py-4 whitespace-nowrap text-sm">
                                         {cell.render("Cell")}
                                     </td>;
                                 })}

@@ -16,9 +16,10 @@ export const Search = ({ globalFilter, setGlobalFilter }: GlobalFilterProps) => 
     }, 200)
 
     return (
-        <div className='flex flex-row items-center justify-start px-2 py-1 border placeholder-gray-500 text-gray-900 rounded-md w-72 mb-3 ml-2 sm:ml-0'>
+        <div className='flex flex-row items-center justify-start px-2 py-1 border placeholder-gray-500 text-gray-900 rounded-md w-72 mb-3'>
             <SearchIcon className="h-5 w-5 text-gray-400 mr-5" />
             <input
+                className="focus:outline-none"
                 type='text'
                 value={value || ""}
                 onChange={e => {

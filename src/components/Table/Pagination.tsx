@@ -8,8 +8,8 @@ interface Props extends UsePaginationInstanceProps<any> {
 }
 
 export const Pagination = (props: Props) => (
-    <div className="py-3 flex flex-1 items-center justify-between w-100">
-        <div className="w-100 min-w-screen justify-between sm:hidden">
+    <div className="py-3 flex flex-1 items-center justify-between w-full">
+        <div className="w-full flex flex-row min-w-screen justify-between sm:hidden">
             <Button onClick={() => props.previousPage()} disabled={!props.canPreviousPage}>Previous</Button>
             <Button onClick={() => props.nextPage()} disabled={!props.canNextPage}>Next</Button>
         </div>
@@ -19,6 +19,7 @@ export const Pagination = (props: Props) => (
                     Page <span className="font-medium">{props.state.pageIndex + 1}</span> of <span className="font-medium">{props.pageOptions.length}</span>
                 </span>
                 <select
+                    className="text-sm text-gray-700"
                     value={props.state.pageSize}
                     onChange={e => {
                         props.setPageSize(Number(e.target.value))
