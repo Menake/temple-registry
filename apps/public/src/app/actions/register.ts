@@ -1,7 +1,7 @@
 "use server"
 
-import { db } from "@/db"
-import { userInsertSchema, users } from "@/db/schema"
+import { db } from "@/lib/db"
+import { userInsertSchema, users } from "@temple-registry/db/schema"
 import { z } from "zod"
 
 const registerSchema = z.object({

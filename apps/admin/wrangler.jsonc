@@ -4,7 +4,7 @@
  */
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
-	"name": "temple-registry",
+	"name": "temple-registry-admin",
 	"compatibility_date": "2025-02-24",
 	"compatibility_flags": [
 		"nodejs_compat"
@@ -19,21 +19,19 @@
    */
   // "placement": { "mode": "smart" },
 
-  
   /**
    * Bindings
    * Bindings allow your Worker to interact with resources on the Cloudflare Developer Platform, including
    * databases, object storage, AI inference, real-time communication and more.
    * https://developers.cloudflare.com/workers/runtime-apis/bindings/
    */
-   "d1_databases": [
-      {
-        "binding": "DB",
-        "database_name": "temple-registry",
-        "database_id": "ed1260db-3487-466d-8c20-23efc078a1f9",
-        "migrations_dir": "drizzle"
-      }
-    ]
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "temple-registry",
+      "database_id": "ed1260db-3487-466d-8c20-23efc078a1f9"
+    }
+  ]
   /**
    * Environment Variables
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
