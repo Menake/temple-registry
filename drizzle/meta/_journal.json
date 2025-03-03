@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1740975386703,
+      "tag": "0000_blushing_penance",
+      "breakpoints": true
+    }
+  ]
+}
