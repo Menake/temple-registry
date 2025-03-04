@@ -5,7 +5,7 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "temple-registry-admin",
-	"compatibility_date": "2025-02-24",
+	"compatibility_date": "2025-03-03",
 	"compatibility_flags": [
 		"nodejs_compat"
 	],
@@ -31,12 +31,12 @@
       "database_name": "temple-registry",
       "database_id": "ed1260db-3487-466d-8c20-23efc078a1f9"
     }
-  ]
+  ],
   /**
    * Environment Variables
    * https://developers.cloudflare.com/workers/wrangler/configuration/#environment-variables
    */
-  // "vars": { "MY_VARIABLE": "production_value" },
+  "vars": { "NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY": "pk_live_Y2xlcmsuYWRtaW4uc3JpbGFua2FyYW1heWEudGVtcGxlLWV2ZW50cy5vcmck" }
   /**
    * Note: Use secrets to store sensitive data.
    * https://developers.cloudflare.com/workers/configuration/secrets/
