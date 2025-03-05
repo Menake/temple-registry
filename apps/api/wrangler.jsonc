@@ -1,0 +1,45 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "api",
+  "main": "src/index.ts",
+  "compatibility_date": "2025-03-04",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+  "observability": {
+		"enabled": true
+	},
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "temple-registry",
+      "database_id": "ed1260db-3487-466d-8c20-23efc078a1f9",
+      "migrations_dir": "../../packages/db/migrations"
+    }
+  ]
+  // "vars": {
+  //   "MY_VAR": "my-variable"
+  // },
+  // "kv_namespaces": [
+  //   {
+  //     "binding": "MY_KV_NAMESPACE",
+  //     "id": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  //   }
+  // ],
+  // "r2_buckets": [
+  //   {
+  //     "binding": "MY_BUCKET",
+  //     "bucket_name": "my-bucket"
+  //   }
+  // ],
+  // "d1_databases": [
+  //   {
+  //     "binding": "MY_DB",
+  //     "database_name": "my-database",
+  //     "database_id": ""
+  //   }
+  // ],
+  // "ai": {
+  //   "binding": "AI"
+  // }
+}
