@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "api",
+  "name": "temple-registry-api",
   "main": "src/index.ts",
   "compatibility_date": "2025-03-04",
   "compatibility_flags": [
@@ -19,12 +19,15 @@
   ],
   "vars": {
     "GOOGLE_REDIRECT_URI": "https://api.temple-events.org/auth/login/google/callback",
-    "ON_LOGIN_REDIRECT_URI": "https://srilankaramaya.temple-events.org/admin"
+    "ON_LOGIN_REDIRECT_URI": "https://srilankaramaya.temple-events.org/admin",
+    "COOKIE_DOMAIN": "temple-events.org",
+    "WORKER_ENV": "production"
   },
   "routes": [
     {
-      "pattern": "api.temple-events.org/*",
-      "zone_name": "temple-events.org"
+      "pattern": "api.temple-events.org",
+      "zone_name": "temple-events.org",
+      "custom_domain": true
     }
   ]
   // "kv_namespaces": [

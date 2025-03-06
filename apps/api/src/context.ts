@@ -10,6 +10,7 @@ export type Env = {
   GOOGLE_REDIRECT_URI: string;
   WEB_REDIRECT_URL: string;
   ON_LOGIN_REDIRECT_URI: string;
+  COOKIE_DOMAIN: string;
 };
 
 // eslint-disable-next-line @typescript-eslint/consistent-type-definitions

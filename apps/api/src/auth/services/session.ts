@@ -111,7 +111,7 @@ export class SessionService {
         if (ctx.env.WORKER_ENV === "production") {
             ctx.header(
                 "Set-Cookie",
-                `session=${token}; HttpOnly; SameSite=Lax; Expires=${expiresAt.toUTCString()}; Path=/; Secure;`
+                `session=${token}; domain=${ctx.env.COOKIE_DOMAIN}; HttpOnly; SameSite=Lax; Expires=${expiresAt.toUTCString()}; Path=/; Secure;`
               )
         } else {
             ctx.header(
