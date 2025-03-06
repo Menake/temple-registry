@@ -7,14 +7,14 @@ import { InferResponseType } from "hono"
 
 type Member = InferResponseType<typeof Api.admin.members.$get>[number]
 
-export default async function MemberDetailPage({params} : {params: { id: string}}) {
-  const id = params.id as string
+export default async function MemberDetailPage({params} : {params: Promise<{ id: string}>}) {
+  const { id } = await params;
 
   const api = await getApiClient();
   // Find the member with the matching ID
   const response = await api.admin.members[":id"].$get({
     param: {
-      id: id
+      id
     }
   });
 
