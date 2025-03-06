@@ -8,8 +8,6 @@
     "migrate:local": "wrangler d1 migrations apply temple-registry --local"
   },
   "dependencies": {
-    "@clerk/backend": "^1.25.0",
-    "@hono/clerk-auth": "^2.0.0",
     "@hono/zod-validator": "^0.4.3",
     "@oslojs/crypto": "^1.0.1",
     "@oslojs/encoding": "^1.1.0",

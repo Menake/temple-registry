@@ -14,7 +14,7 @@ import {
 } from "@/components/ui/sidebar"
 import Image from "next/image"
 import { NavUser } from "./nav-user"
-import { getUser } from "@/lib/roles"
+import { getUser } from "@/lib/user"
 
 // Menu items.
 const items = [
@@ -37,42 +37,41 @@ const items = [
 
 export async function AppSidebar() {
     const user = await getUser();
-    
 
-  return (
-    <Sidebar>
-        <SidebarHeader className="flex flex-row items-center justify-between pr-8">
-            <Image src="/logo.png" alt="Sri Lankaramaya logo" height={50} width={50} />
-            <div className="text-center text-lg font-medium">Sri Lankaramaya</div>
-        </SidebarHeader>
-        <SidebarContent>
-            <SidebarGroup>
-                <SidebarGroupContent>
-                    <SidebarMenu>
-                    {items.map((item) => (
-                        <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton asChild>
-                            <a href={item.url}>
-                            <item.icon />
-                            <span>{item.title}</span>
-                            </a>
-                        </SidebarMenuButton>
-                        </SidebarMenuItem>
-                    ))}
-                    </SidebarMenu>
-                </SidebarGroupContent>
-            </SidebarGroup>
-        </SidebarContent>
-      <SidebarFooter>
-        {user && (
-            <NavUser user={{
-                name: user.username ?? "",
-                email: user.email,
-                avatar: ""
-            }} />
-        )}
-      </SidebarFooter>
-      <SidebarRail />
-    </Sidebar>
-  )
+    return (
+        <Sidebar>
+            <SidebarHeader className="flex flex-row items-center justify-between pr-8">
+                <Image src="/logo.png" alt="Sri Lankaramaya logo" height={50} width={50} />
+                <div className="text-center text-lg font-medium">Sri Lankaramaya</div>
+            </SidebarHeader>
+            <SidebarContent>
+                <SidebarGroup>
+                    <SidebarGroupContent>
+                        <SidebarMenu>
+                        {items.map((item) => (
+                            <SidebarMenuItem key={item.title}>
+                            <SidebarMenuButton asChild>
+                                <a href={item.url}>
+                                <item.icon />
+                                <span>{item.title}</span>
+                                </a>
+                            </SidebarMenuButton>
+                            </SidebarMenuItem>
+                        ))}
+                        </SidebarMenu>
+                    </SidebarGroupContent>
+                </SidebarGroup>
+            </SidebarContent>
+            <SidebarFooter>
+                {user && (
+                    <NavUser user={{
+                        name: user.username ?? "",
+                        email: user.email,
+                        avatar: ""
+                    }} />
+                )}
+            </SidebarFooter>
+            <SidebarRail />
+        </Sidebar>
+    )
 }

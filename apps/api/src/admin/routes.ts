@@ -1,5 +1,4 @@
 
-import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
 import { Hono } from "hono";
 
 import type { AppContext } from "../context";
@@ -11,7 +10,6 @@ const adminRoutes = new Hono<AppContext>()
     .use(authMiddleware)
     .get("/members", async (c) => {
         const db = c.get("db");
-        const auth = getAuth(c);
         
         const users = await db.query.memberTable.findMany();
         return c.json(users);

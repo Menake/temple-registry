@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import { AppSidebar } from "@/components/admin/app-sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-import { getUser } from "@/lib/roles";
+import { getUser } from "@/lib/user";
 import { redirect } from "next/navigation";
 
 
