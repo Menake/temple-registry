@@ -4,6 +4,8 @@ import { createDb } from "@temple-registry/db";
 import { logger } from "hono/logger";
 import { devoteeRoutes } from "./devotee/routes";
 import { adminRoutes } from "./admin/routes";
+import { authMiddleware } from "./auth/middleware";
+import { authRoutes } from "./auth";
 
 const app = new Hono<AppContext>()
   .use(logger())
@@ -15,6 +17,7 @@ const app = new Hono<AppContext>()
     }
     return next();
   })
+  .route("auth", authRoutes)
   .route("devotee", devoteeRoutes)
   .route("admin", adminRoutes);
 

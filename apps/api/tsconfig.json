@@ -1,17 +1,27 @@
 {
   "compilerOptions": {
     "target": "ESNext",
-    "module": "ESNext",
+    "esModuleInterop": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    "module": "Preserve",
     "moduleResolution": "Bundler",
     "strict": true,
+    "noEmit": true,
     "skipLibCheck": true,
     "lib": [
       "ESNext"
     ],
     "types": [
-      "@cloudflare/workers-types/2023-07-01"
+      "@cloudflare/workers-types"
     ],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx"
   },
+  "include": [
+    "src/**/*"
+  ]
 }

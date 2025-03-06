@@ -3,19 +3,32 @@ import { clerkMiddleware, getAuth } from '@hono/clerk-auth'
 import { Hono } from "hono";
 
 import type { AppContext } from "../context";
-import { HTTPException } from "hono/http-exception";
+import { zValidator } from "@hono/zod-validator";
+import {z} from "zod";
+import { authMiddleware } from "../auth/middleware";
 
 const adminRoutes = new Hono<AppContext>()
-    .use("*", clerkMiddleware())
+    .use(authMiddleware)
     .get("/members", async (c) => {
         const db = c.get("db");
         const auth = getAuth(c);
-
-        if (auth?.sessionClaims?.metadata.role !== "admin") 
-            throw new HTTPException(403);
         
-        const users = await db.query.users.findMany();
+        const users = await db.query.memberTable.findMany();
         return c.json(users);
-    });
+    })
+    .get("/members/:id", 
+        zValidator("param", z.object({
+            id: z.string().pipe(z.coerce.number())
+        })),
+        async (c) => {
+            const db = c.get("db");
+            const { id } = c.req.valid("param")
+
+            const member = await db.query.memberTable.findFirst({
+                where: (member, {eq}) => eq(member.id, id)
+            });
+            
+            return c.json(member);
+        });
 
 export { adminRoutes };

@@ -1,8 +1,8 @@
 {
   "version": "6",
   "dialect": "sqlite",
-  "id": "38c0d3e0-2d49-4974-9cc1-36e047b80401",
-  "prevId": "00000000-0000-0000-0000-000000000000",
+  "id": "6bfb4f59-d8a3-46da-b3c6-4fd88c24111c",
+  "prevId": "38c0d3e0-2d49-4974-9cc1-36e047b80401",
   "tables": {
     "members": {
       "name": "members",
@@ -193,6 +193,14 @@
           "primaryKey": false,
           "notNull": false,
           "autoincrement": false
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": "'user'"
         }
       },
       "indexes": {

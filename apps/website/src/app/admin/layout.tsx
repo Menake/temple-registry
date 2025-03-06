@@ -1,7 +1,8 @@
 import "@/app/globals.css";
-import { AdminSidebar } from "@/components/admin/sidebar";
-import {  SignedOut, RedirectToSignIn, SignedIn } from "@clerk/nextjs";
-import { checkRole } from "@/lib/roles";
+import { AppSidebar } from "@/components/admin/app-sidebar";
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { getUser } from "@/lib/roles";
+import { redirect } from "next/navigation";
 
 
 export default async function RootLayout({
@@ -9,39 +10,20 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <>
-      <SignedOut>
-        <RedirectToSignIn/>
-      </SignedOut>
-      <SignedIn>
-        <SignedInView>
-          {children}
-        </SignedInView>
-      </SignedIn>  
-    </>
-  );
-}
+  const user = await getUser();
 
-const SignedInView = async ({
-  children
-}: Readonly<{
-  children: React.ReactNode;
-}>) => {
-  const isAdmin = await checkRole('admin');
+  if (!user) return redirect("/sign-in");
 
-  if (!isAdmin) return (
-    <div>
-      You do not have permission to view this page
-    </div>
-  );
-  
+  if (user.role !== "admin")
+    return <div>No Access</div>
+
   return (
-    <div className="flex min-h-screen flex-col md:flex-row">
-      <AdminSidebar />
-      <div className="flex-1">
-        <main>{children}</main>
-      </div>
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <main className="flex flex-col flex-1">
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
   )
 }

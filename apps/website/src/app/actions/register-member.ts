@@ -1,8 +1,8 @@
 "use server"
 
-import { Api } from "@/lib/api"
 import { z } from "zod"
 import { registerSchema } from "@temple-registry/api/src/devotee/routes"
+import { getApiClient } from "@/lib/api"
 
 
 // Type for the form data
@@ -47,7 +47,8 @@ export async function registerUser(prevState: FormState, formData: FormData): Pr
     }
   }
 
-  const result = await Api.devotee.$post({
+  const api = await getApiClient();
+  const result = await api.devotee.$post({
     json: validationResult.data
   });
 

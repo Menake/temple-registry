@@ -4,7 +4,7 @@ import type { AppContext } from "../context";
 import { HTTPException } from "hono/http-exception";
 import { zValidator } from "@hono/zod-validator";
 import { z } from "zod";
-import { users } from "@temple-registry/db/schema";
+import { memberTable, userTable } from "@temple-registry/db/schema";
 
 // Define the schema for form validation
 export const registerSchema = z.object({
@@ -20,18 +20,22 @@ const devoteeRoutes = new Hono<AppContext>()
     async (c) => {
       const db = c.get("db");
 
-      const newUser = c.req.valid("json");
+      const newMember = c.req.valid("json");
 
-      const existingUser = await db.query.users.findFirst({
-        where: (user, {eq}) => eq(user.email, newUser.email)
+      const existingMember = await db.query.memberTable.findFirst({
+        where: (member, {eq}) => eq(member.email, newMember.email)
       });
+
+      const existingUser = await db.query.userTable.findFirst({
+        where: (user, {eq}) => eq(user.email, newMember.email)
+      })
     
-      if (existingUser) 
+      if (existingMember || existingUser) 
         throw new HTTPException(400, {
             message: "Someone has already registered with this email"
         });
     
-      const [user] = await db.insert(users).values(newUser).returning();
+      const [user] = await db.insert(memberTable).values(newMember).returning();
 
       return c.json(user);
     });

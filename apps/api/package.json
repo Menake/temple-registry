@@ -1,6 +1,5 @@
 {
   "name": "@temple-registry/api",
-  "type": "module",
   "module": "src/index.ts",
   "scripts": {
     "dev": "wrangler dev",
@@ -12,11 +11,15 @@
     "@clerk/backend": "^1.25.0",
     "@hono/clerk-auth": "^2.0.0",
     "@hono/zod-validator": "^0.4.3",
+    "@oslojs/crypto": "^1.0.1",
+    "@oslojs/encoding": "^1.1.0",
     "@temple-registry/db": "workspace:*",
-    "hono": "^4.7.2"
+    "arctic": "^3.4.0",
+    "hono": "^4.7.2",
+    "oslo": "^1.2.1"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20250214.0",
-    "wrangler": "^3.109.2"
+    "wrangler": "^3.113.0"
   }
 }
