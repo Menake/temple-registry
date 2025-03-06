@@ -1,6 +1,6 @@
-// import type { User, Session } from "@temple-registry/db/schema";
 import type { Database } from "@temple-registry/db";
 import { User } from "@temple-registry/db/schema";
+import type { D1Database } from "@cloudflare/workers-types"
 
 export type Env = {
   DB: D1Database;
