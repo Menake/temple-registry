@@ -13,13 +13,20 @@
     {
       "binding": "DB",
       "database_name": "temple-registry",
-      "database_id": "ed1260db-3487-466d-8c20-23efc078a1f9",
+      "database_id": "b36017a8-fe5a-4fca-af43-78696e4f9558",
       "migrations_dir": "../../packages/db/migrations"
     }
+  ],
+  "vars": {
+    "GOOGLE_REDIRECT_URI": "https://api.temple-events.org/auth/login/google/callback",
+    "ON_LOGIN_REDIRECT_URI": "https://srilankaramaya.temple-events.org/admin"
+  },
+  "routes": [
+    {
+      "pattern": "api.temple-events.org/*",
+      "zone_name": "temple-events.org"
+    }
   ]
-  // "vars": {
-  //   "MY_VAR": "my-variable"
-  // },
   // "kv_namespaces": [
   //   {
   //     "binding": "MY_KV_NAMESPACE",

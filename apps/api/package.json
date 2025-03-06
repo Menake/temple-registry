@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy --minify",
-    "migrate": "wrangler d1 migrations apply temple-registry",
+    "migrate:prod": "wrangler d1 migrations apply temple-registry --remote",
     "migrate:local": "wrangler d1 migrations apply temple-registry --local"
   },
   "dependencies": {
